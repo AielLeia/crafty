@@ -4,17 +4,22 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "build": "tsc --noEmit ./src/main.ts && esbuild src/main.ts --bundle --platform=node --format=cjs --outfile=dist/main.js",
+    "link": "pnpm run build && pnpm link --global",
     "test": "vitest --watch"
   },
+  "bin": {
+    "crafty": "dist/main.js"
+  },
   "devDependencies": {
+    "@tsconfig/node-lts": "^20.1.1",
     "@types/node": "^20.11.19",
+    "esbuild": "^0.20.0",
     "prettier": "^3.2.5",
     "typescript": "^5.2.2",
-    "vite": "^5.1.0",
-    "vite-aliases": "^0.11.5",
     "vitest": "^1.2.2"
+  },
+  "dependencies": {
+    "commander": "^12.0.0"
   }
 }
