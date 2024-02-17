@@ -2,7 +2,7 @@
   "name": "crafty",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "_moduleAliases": {
     "@": "dist"
   },
