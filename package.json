@@ -3,8 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "_moduleAliases": {
+    "@": "dist"
+  },
   "scripts": {
-    "build": "tsc --noEmit ./src/main.ts && esbuild src/main.ts --bundle --platform=node --format=cjs --outfile=dist/main.js",
+    "build": "tsc --noEmit && node build.cjs",
     "link": "pnpm run build && pnpm link --global",
     "test": "vitest --watch"
   },
@@ -15,11 +18,13 @@
     "@tsconfig/node-lts": "^20.1.1",
     "@types/node": "^20.11.19",
     "esbuild": "^0.20.0",
+    "esbuild-plugin-alias-path": "^2.0.2",
     "prettier": "^3.2.5",
     "typescript": "^5.2.2",
     "vitest": "^1.2.2"
   },
   "dependencies": {
-    "commander": "^12.0.0"
+    "commander": "^12.0.0",
+    "module-alias": "^2.2.3"
   }
 }
