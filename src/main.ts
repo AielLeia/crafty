@@ -30,7 +30,7 @@ program
     new Command('post')
       .argument('<user>', 'the current user')
       .argument('<message>', 'the message to post')
-      .action((user, message) => {
+      .action(async (user, message) => {
         const postMessageCommand: PostMessageCommand = {
           id: 'message-id',
           author: user,
@@ -38,7 +38,7 @@ program
         };
 
         try {
-          postMessageUseCase.handle(postMessageCommand);
+          await postMessageUseCase.handle(postMessageCommand);
           console.log('Message poster');
           console.table([messageRepository.message]);
         } catch (e: unknown) {

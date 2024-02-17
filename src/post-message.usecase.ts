@@ -12,7 +12,7 @@ export type Message = {
 };
 
 export interface MessageRepository {
-  save(message: Message): void;
+  save(message: Message): Promise<void>;
 }
 
 export interface DateProvider {
@@ -28,7 +28,7 @@ export default class PostMessageUseCase {
     private readonly dateProvider: DateProvider
   ) {}
 
-  handle(postMessageCommand: PostMessageCommand) {
+  async handle(postMessageCommand: PostMessageCommand) {
     if (postMessageCommand.text.length > 280) {
       throw new MessageTooLongError();
     }
@@ -37,7 +37,7 @@ export default class PostMessageUseCase {
       throw new EmptyMessageError();
     }
 
-    this.messageRepository.save({
+    await this.messageRepository.save({
       id: postMessageCommand.id,
       text: postMessageCommand.text,
       author: postMessageCommand.author,

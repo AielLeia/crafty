@@ -16,10 +16,10 @@ describe('Feature: Posting a message', () => {
   });
 
   describe('Rule: A message can contain a maximum of 280 characters', () => {
-    test('Alice can post a message for her timeline', () => {
+    test('Alice can post a message for her timeline', async () => {
       fixture.givenNowIs(new Date('2023-01-19T19:00:00.000Z'));
 
-      fixture.whenUserPostAMessage({
+      await fixture.whenUserPostAMessage({
         id: 'message-id',
         text: 'Hello world 2',
         author: 'Alice',
@@ -33,13 +33,13 @@ describe('Feature: Posting a message', () => {
       });
     });
 
-    test('Alice cannot post a message with more than 281 characters', () => {
+    test('Alice cannot post a message with more than 281 characters', async () => {
       const textWithLengthOf281 =
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dignissim sem sem, eu iaculis est feugiat at. Sed vehicula vitae nibh vel imperdiet. Integer a metus quis sapien pharetra pretium. Nulla dictum massa ut imperdiet mattis. Phasellus vitae vehicula justo, ac nulla.';
 
       fixture.givenNowIs(new Date('2023-01-19T19:00:00.000Z'));
 
-      fixture.whenUserPostAMessage({
+      await fixture.whenUserPostAMessage({
         id: 'message-id',
         text: textWithLengthOf281,
         author: 'Alice',
@@ -50,10 +50,10 @@ describe('Feature: Posting a message', () => {
   });
 
   describe('Rule: Message cannot be empty', () => {
-    test('Alice cannot post an empty message', () => {
+    test('Alice cannot post an empty message', async () => {
       fixture.givenNowIs(new Date('2023-01-19T19:00:00.000Z'));
 
-      fixture.whenUserPostAMessage({
+      await fixture.whenUserPostAMessage({
         id: 'message-id',
         text: '',
         author: 'Alice',
@@ -62,10 +62,10 @@ describe('Feature: Posting a message', () => {
       fixture.thenErrorShouldBe(EmptyMessageError);
     });
 
-    test('Alice cannot post a message with only white spaces', () => {
+    test('Alice cannot post a message with only white spaces', async () => {
       fixture.givenNowIs(new Date('2023-01-19T19:00:00.000Z'));
 
-      fixture.whenUserPostAMessage({
+      await fixture.whenUserPostAMessage({
         id: 'message-id',
         text: '              ',
         author: 'Alice',
@@ -85,7 +85,7 @@ class StubDateProvider implements DateProvider {
 }
 
 function createFixture() {
-  let thrownError = Error;
+  let thrownError: Error;
 
   const dateProvider = new StubDateProvider();
   const messageRepository = new InMemoryMessageRepository();
@@ -100,12 +100,13 @@ function createFixture() {
       dateProvider.now = now;
     },
 
-    whenUserPostAMessage(postMessageCommand: PostMessageCommand) {
+    async whenUserPostAMessage(postMessageCommand: PostMessageCommand) {
       try {
-        postMessageUseCase.handle(postMessageCommand);
+        await postMessageUseCase.handle(postMessageCommand);
       } catch (e: unknown) {
-        // @ts-ignore
-        thrownError = e;
+        if (e instanceof Error) {
+          thrownError = e;
+        }
       }
     },
 
