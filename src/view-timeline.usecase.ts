@@ -34,7 +34,7 @@ export default class ViewTimelineUseCase {
   private publicationTime(publishedAt: Date) {
     const now = this.dateProvider.getNow();
     const elapseMinuteBetween = now.getTime() - publishedAt.getTime();
-    const timeInMinute = elapseMinuteBetween / ONE_MINUTE_IN_MS;
+    const timeInMinute = Math.floor(elapseMinuteBetween / ONE_MINUTE_IN_MS);
 
     if (timeInMinute < 1) return 'less than a minute ago';
     if (timeInMinute < 2) return 'one minute ago';
