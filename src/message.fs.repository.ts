@@ -13,8 +13,20 @@ export class MessageFsRepository implements MessageRepository {
 
   async save(message: Message): Promise<void> {
     const messages = await this.getMessages();
-    messages.push(message);
+    const exitingMessage = messages.findIndex((msg) => msg.id === message.id);
+
+    if (exitingMessage === -1) {
+      messages.push(message);
+    } else {
+      messages[exitingMessage] = message;
+    }
+
     return fs.promises.writeFile(this.messagePath, JSON.stringify(messages));
+  }
+
+  async getById(messageId: string): Promise<Message> {
+    const messages = await this.getMessages();
+    return messages.find((msg) => msg.id === messageId)!;
   }
 
   private async getMessages(): Promise<Message[]> {

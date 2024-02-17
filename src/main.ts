@@ -8,6 +8,9 @@ import PostMessageUseCase, {
 } from '@/post-message.usecase';
 import { MessageFsRepository } from '@/message.fs.repository.ts';
 import ViewTimelineUseCase from '@/view-timeline.usecase.ts';
+import EditMessageUseCase, {
+  EditMessageCommand,
+} from '@/edit-message.usecase.ts';
 
 class RealDateProvider implements DateProvider {
   getNow(): Date {
@@ -25,6 +28,7 @@ const viewTimelineUseCase = new ViewTimelineUseCase(
   messageRepository,
   dateProvider
 );
+const editMessageUseCase = new EditMessageUseCase(messageRepository);
 
 const program = new Command();
 
@@ -57,6 +61,23 @@ program
         try {
           const timeline = await viewTimelineUseCase.handle({ user });
           console.table(timeline);
+        } catch (e: unknown) {
+          console.error(e);
+        }
+      })
+  )
+  .addCommand(
+    new Command('edit')
+      .argument('<message-id>', 'The message id of the message to edit')
+      .argument('<message>', 'The new text')
+      .action(async (messageId, message) => {
+        try {
+          const editMessageCommand: EditMessageCommand = {
+            messageId,
+            text: message,
+          };
+          await editMessageUseCase.handle(editMessageCommand);
+          console.log('Message edited');
         } catch (e: unknown) {
           console.error(e);
         }
