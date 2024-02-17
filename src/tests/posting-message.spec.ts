@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, test } from 'vitest';
 import PostMessageUseCase, {
-  DateProvider,
   EmptyMessageError,
   MessageTooLongError,
   PostMessageCommand,
 } from '@/post-message.usecase.ts';
 import { InMemoryMessageRepository } from '@/message.inmemory.repository.ts';
 import { Message } from '@/message.ts';
+import { StubDateProvider } from '@/stub.dateprovider.ts';
 
 describe('Feature: Posting a message', () => {
   let fixture: Fixture;
@@ -75,14 +75,6 @@ describe('Feature: Posting a message', () => {
     });
   });
 });
-
-class StubDateProvider implements DateProvider {
-  now: Date = new Date();
-
-  getNow(): Date {
-    return this.now;
-  }
-}
 
 function createFixture() {
   let thrownError: Error;
