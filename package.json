@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc --noEmit && node build.cjs",
     "link": "pnpm run build && pnpm link --global",
-    "test": "vitest --watch"
+    "test": "vitest --watch --reporter verbose"
   },
   "bin": {
     "crafty": "dist/main.js"

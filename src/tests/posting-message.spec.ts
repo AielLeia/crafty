@@ -2,11 +2,11 @@ import { beforeEach, describe, expect, test } from 'vitest';
 import PostMessageUseCase, {
   DateProvider,
   EmptyMessageError,
-  Message,
   MessageTooLongError,
   PostMessageCommand,
 } from '@/post-message.usecase.ts';
 import { InMemoryMessageRepository } from '@/message.inmemory.repository.ts';
+import { Message } from '@/message.ts';
 
 describe('Feature: Posting a message', () => {
   let fixture: Fixture;
@@ -111,7 +111,9 @@ function createFixture() {
     },
 
     thenPostedMessageShouldBe(expectedMessage: Message) {
-      expect(expectedMessage).toEqual(messageRepository.message);
+      expect(expectedMessage).toEqual(
+        messageRepository.getMessageById(expectedMessage.id)
+      );
     },
 
     thenErrorShouldBe(expectedError: new () => Error) {
