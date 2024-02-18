@@ -1,6 +1,5 @@
 import { MessageRepository } from '@/message.repository';
 import { DateProvider } from '@/post-message.usecase.ts';
-import { MessageText } from '@/message.ts';
 
 const ONE_MINUTE_IN_MS = 60000;
 
@@ -13,7 +12,7 @@ export default class ViewTimelineUseCase {
   async handle({ user }: { user: string }): Promise<
     {
       author: string;
-      text: MessageText;
+      text: string;
       publicationTime: string;
     }[]
   > {
@@ -26,7 +25,7 @@ export default class ViewTimelineUseCase {
     return Promise.resolve(
       messagesOfUser.map((msg) => ({
         author: msg.author,
-        text: msg.text,
+        text: msg.text.value,
         publicationTime: this.publicationTime(msg.publishedAt),
       }))
     );

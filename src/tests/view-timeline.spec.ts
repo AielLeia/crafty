@@ -4,7 +4,6 @@ import {
   MessagingFixture,
 } from '@/tests/messaging.fixture.ts';
 import { messageBuilder } from '@/tests/message.builder.ts';
-import { MessageText } from '@/message.ts';
 
 describe('Feature: Viewing a personal timeline', () => {
   let fixture: MessagingFixture;
@@ -42,17 +41,17 @@ describe('Feature: Viewing a personal timeline', () => {
       fixture.thenUserShouldSee([
         {
           author: 'Alice',
-          text: MessageText.of('My last message'),
+          text: 'My last message',
           publicationTime: 'less than a minute ago',
         },
         {
           author: 'Alice',
-          text: MessageText.of('My second message'),
+          text: 'My second message',
           publicationTime: 'one minute ago',
         },
         {
           author: 'Alice',
-          text: MessageText.of('My first message'),
+          text: 'My first message',
           publicationTime: '3 minutes ago',
         },
       ]);

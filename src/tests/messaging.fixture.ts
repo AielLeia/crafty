@@ -3,7 +3,7 @@ import { InMemoryMessageRepository } from '@/message.inmemory.repository.ts';
 import PostMessageUseCase, {
   PostMessageCommand,
 } from '@/post-message.usecase.ts';
-import { Message, MessageText } from '@/message.ts';
+import { Message } from '@/message.ts';
 import { expect } from 'vitest';
 import ViewTimelineUseCase from '@/view-timeline.usecase.ts';
 import EditMessageUseCase, {
@@ -15,7 +15,7 @@ export const createMessagingFixture = () => {
 
   let timeline: {
     author: string;
-    text: MessageText;
+    text: string;
     publicationTime: string;
   }[];
   const dateProvider = new StubDateProvider();
@@ -73,7 +73,7 @@ export const createMessagingFixture = () => {
     thenUserShouldSee(
       expectedTimeline: {
         author: string;
-        text: MessageText;
+        text: string;
         publicationTime: string;
       }[]
     ) {

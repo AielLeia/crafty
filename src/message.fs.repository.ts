@@ -4,7 +4,9 @@ import { MessageRepository } from '@/message.repository.ts';
 import { Message, MessageText } from '@/message.ts';
 
 export class MessageFsRepository implements MessageRepository {
-  private readonly messagePath = path.join(__dirname, 'message.json');
+  constructor(
+    private readonly messagePath = path.join(__dirname, 'message.json')
+  ) {}
 
   async getAllOfUser(user: string): Promise<Message[]> {
     const messages = await this.getMessages();
@@ -21,7 +23,17 @@ export class MessageFsRepository implements MessageRepository {
       messages[exitingMessage] = message;
     }
 
-    return fs.promises.writeFile(this.messagePath, JSON.stringify(messages));
+    return fs.promises.writeFile(
+      this.messagePath,
+      JSON.stringify(
+        messages.map((msg) => ({
+          id: msg.id,
+          author: msg.author,
+          publishedAt: msg.publishedAt,
+          text: msg.text.value,
+        }))
+      )
+    );
   }
 
   async getById(messageId: string): Promise<Message> {
