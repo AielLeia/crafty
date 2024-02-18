@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import { MessageRepository } from '@/message.repository.ts';
-import { Message, MessageText } from '@/message.ts';
+import { Message } from '@/message.ts';
 
 export class MessageFsRepository implements MessageRepository {
   constructor(
@@ -25,14 +25,7 @@ export class MessageFsRepository implements MessageRepository {
 
     return fs.promises.writeFile(
       this.messagePath,
-      JSON.stringify(
-        messages.map((msg) => ({
-          id: msg.id,
-          author: msg.author,
-          publishedAt: msg.publishedAt,
-          text: msg.text.value,
-        }))
-      )
+      JSON.stringify(messages.map((m) => m.data))
     );
   }
 
@@ -47,14 +40,16 @@ export class MessageFsRepository implements MessageRepository {
       id: string;
       text: string;
       author: string;
-      publishedAt: Date;
+      publishedAt: string;
     }[];
 
-    return messages.map((msg) => ({
-      id: msg.id,
-      text: MessageText.of(msg.text),
-      author: msg.author,
-      publishedAt: new Date(msg.publishedAt),
-    }));
+    return messages.map((msg) =>
+      Message.fromData({
+        id: msg.id,
+        author: msg.author,
+        publishedAt: new Date(msg.publishedAt),
+        text: msg.text,
+      })
+    );
   }
 }

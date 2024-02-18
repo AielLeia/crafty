@@ -25,7 +25,7 @@ export default class ViewTimelineUseCase {
     return Promise.resolve(
       messagesOfUser.map((msg) => ({
         author: msg.author,
-        text: msg.text.value,
+        text: msg.text,
         publicationTime: this.publicationTime(msg.publishedAt),
       }))
     );

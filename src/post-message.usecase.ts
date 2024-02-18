@@ -1,5 +1,5 @@
 import { MessageRepository } from '@/message.repository';
-import { MessageText } from '@/message.ts';
+import { Message } from '@/message.ts';
 
 export type PostMessageCommand = {
   id: string;
@@ -18,13 +18,13 @@ export default class PostMessageUseCase {
   ) {}
 
   async handle(postMessageCommand: PostMessageCommand) {
-    const messageText = MessageText.of(postMessageCommand.text);
-
-    await this.messageRepository.save({
-      id: postMessageCommand.id,
-      text: messageText,
-      author: postMessageCommand.author,
-      publishedAt: this.dateProvider.getNow(),
-    });
+    await this.messageRepository.save(
+      Message.fromData({
+        id: postMessageCommand.id,
+        text: postMessageCommand.text,
+        author: postMessageCommand.author,
+        publishedAt: this.dateProvider.getNow(),
+      })
+    );
   }
 }
