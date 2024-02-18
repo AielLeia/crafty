@@ -2,8 +2,8 @@ import { beforeEach, describe, test } from 'vitest';
 import {
   createMessagingFixture,
   MessagingFixture,
-} from '@/tests/messaging.fixture.ts';
-import { messageBuilder } from '@/tests/message.builder.ts';
+} from '@/message/tests/messaging.fixture.ts';
+import { messageBuilder } from '@/message/tests/message.builder.ts';
 
 describe('Feature: Viewing a personal timeline', () => {
   let fixture: MessagingFixture;

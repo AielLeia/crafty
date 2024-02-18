@@ -1,4 +1,4 @@
-import { Message } from '@/domain/message.ts';
+import { Message } from '@/message/domain/message.ts';
 
 export const messageBuilder = ({
   id = 'message-id',

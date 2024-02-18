@@ -1,3 +1,5 @@
+import { MessageText } from '@/message/domain/valueobject/message-text.ts';
+
 export class Message {
   constructor(
     private readonly _id: string,
@@ -42,24 +44,5 @@ export class Message {
       MessageText.of(data.text),
       data.publishedAt
     );
-  }
-}
-
-export class MessageTooLongError extends Error {}
-export class EmptyMessageError extends Error {}
-
-export class MessageText {
-  private constructor(readonly value: string) {}
-
-  static of(text: string) {
-    if (text.length > 280) {
-      throw new MessageTooLongError();
-    }
-
-    if (text.trim().length === 0) {
-      throw new EmptyMessageError();
-    }
-
-    return new MessageText(text);
   }
 }

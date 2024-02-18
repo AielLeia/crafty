@@ -4,13 +4,13 @@ import 'module-alias/register';
 import { Command } from 'commander';
 import PostMessageUseCase, {
   PostMessageCommand,
-} from '@/application/usecase/post-message.usecase.ts';
-import { MessageFsRepository } from '@/infrastructure/message.fs.repository.ts';
-import ViewTimelineUseCase from '@/application/usecase/view-timeline.usecase.ts';
+} from '@/message/application/usecase/post-message.usecase.ts';
+import { MessageFsRepository } from '@/message/infrastructure/message.fs.repository.ts';
+import ViewTimelineUseCase from '@/message/application/usecase/view-timeline.usecase.ts';
 import EditMessageUseCase, {
   EditMessageCommand,
-} from '@/application/usecase/edit-message.usecase.ts';
-import { RealDateProvider } from '@/infrastructure/real-date.provider.ts';
+} from '@/message/application/usecase/edit-message.usecase.ts';
+import { RealDateProvider } from '@/message/infrastructure/real-date.provider.ts';
 
 const messageRepository = new MessageFsRepository();
 const dateProvider = new RealDateProvider();
