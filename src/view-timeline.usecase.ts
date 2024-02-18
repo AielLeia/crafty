@@ -1,5 +1,6 @@
 import { MessageRepository } from '@/message.repository';
 import { DateProvider } from '@/post-message.usecase.ts';
+import { MessageText } from '@/message.ts';
 
 const ONE_MINUTE_IN_MS = 60000;
 
@@ -12,7 +13,7 @@ export default class ViewTimelineUseCase {
   async handle({ user }: { user: string }): Promise<
     {
       author: string;
-      text: string;
+      text: MessageText;
       publicationTime: string;
     }[]
   > {

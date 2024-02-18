@@ -1,8 +1,5 @@
 import { beforeEach, describe, test } from 'vitest';
-import {
-  EmptyMessageError,
-  MessageTooLongError,
-} from '@/post-message.usecase.ts';
+import { EmptyMessageError, MessageTooLongError } from '@/message.ts';
 import {
   createMessagingFixture,
   MessagingFixture,
@@ -25,9 +22,13 @@ describe('Feature: Posting a message', () => {
 
       fixture.givenNowIs(new Date('2023-01-19T19:00:00.000Z'));
 
-      await fixture.whenUserPostAMessage(newAliceMessage.build());
+      await fixture.whenUserPostAMessage({
+        id: 'message-id',
+        text: 'Hello world 2',
+        author: 'Alice',
+      });
 
-      fixture.thenMessageShouldBe(
+      await fixture.thenMessageShouldBe(
         newAliceMessage
           .withPublishedAt(new Date('2023-01-19T19:00:00.000Z'))
           .build()

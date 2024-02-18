@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import { MessageRepository } from '@/message.repository.ts';
-import { Message } from '@/message.ts';
+import { Message, MessageText } from '@/message.ts';
 
 export class MessageFsRepository implements MessageRepository {
   private readonly messagePath = path.join(__dirname, 'message.json');
@@ -40,7 +40,7 @@ export class MessageFsRepository implements MessageRepository {
 
     return messages.map((msg) => ({
       id: msg.id,
-      text: msg.text,
+      text: MessageText.of(msg.text),
       author: msg.author,
       publishedAt: new Date(msg.publishedAt),
     }));

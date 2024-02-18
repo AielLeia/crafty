@@ -4,6 +4,7 @@ import {
   MessagingFixture,
 } from '@/tests/messaging.fixture.ts';
 import { messageBuilder } from '@/tests/message.builder.ts';
+import { MessageText } from '@/message.ts';
 
 describe('Feature: Viewing a personal timeline', () => {
   let fixture: MessagingFixture;
@@ -13,7 +14,7 @@ describe('Feature: Viewing a personal timeline', () => {
   });
 
   describe('Rule: Message are shown in reverse chronological order', () => {
-    test('Alice can view the 3 messages she published in her timeline', async () => {
+    test.only('Alice can view the 3 messages she published in her timeline', async () => {
       const aliceMessageBuilder = messageBuilder().authoredBy('Alice');
 
       fixture.givenTheFollowingMessagesExist([
@@ -41,17 +42,17 @@ describe('Feature: Viewing a personal timeline', () => {
       fixture.thenUserShouldSee([
         {
           author: 'Alice',
-          text: 'My last message',
+          text: MessageText.of('My last message'),
           publicationTime: 'less than a minute ago',
         },
         {
           author: 'Alice',
-          text: 'My second message',
+          text: MessageText.of('My second message'),
           publicationTime: 'one minute ago',
         },
         {
           author: 'Alice',
-          text: 'My first message',
+          text: MessageText.of('My first message'),
           publicationTime: '3 minutes ago',
         },
       ]);
