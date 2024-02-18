@@ -1,4 +1,4 @@
-import { DateProvider } from '@/post-message.usecase.ts';
+import { DateProvider } from '@/application/date.provider.ts';
 
 export class StubDateProvider implements DateProvider {
   now: Date = new Date();

@@ -3,20 +3,14 @@
 import 'module-alias/register';
 import { Command } from 'commander';
 import PostMessageUseCase, {
-  DateProvider,
   PostMessageCommand,
-} from '@/post-message.usecase';
-import { MessageFsRepository } from '@/message.fs.repository.ts';
-import ViewTimelineUseCase from '@/view-timeline.usecase.ts';
+} from '@/application/usecase/post-message.usecase.ts';
+import { MessageFsRepository } from '@/infrastructure/message.fs.repository.ts';
+import ViewTimelineUseCase from '@/application/usecase/view-timeline.usecase.ts';
 import EditMessageUseCase, {
   EditMessageCommand,
-} from '@/edit-message.usecase.ts';
-
-class RealDateProvider implements DateProvider {
-  getNow(): Date {
-    return new Date();
-  }
-}
+} from '@/application/usecase/edit-message.usecase.ts';
+import { RealDateProvider } from '@/infrastructure/real-date.provider.ts';
 
 const messageRepository = new MessageFsRepository();
 const dateProvider = new RealDateProvider();

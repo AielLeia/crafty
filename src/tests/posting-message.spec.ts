@@ -1,5 +1,5 @@
 import { beforeEach, describe, test } from 'vitest';
-import { EmptyMessageError, MessageTooLongError } from '@/message.ts';
+import { EmptyMessageError, MessageTooLongError } from '@/domain/message.ts';
 import {
   createMessagingFixture,
   MessagingFixture,

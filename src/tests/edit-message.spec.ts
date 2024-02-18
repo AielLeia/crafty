@@ -4,7 +4,7 @@ import {
   MessagingFixture,
 } from '@/tests/messaging.fixture.ts';
 import { messageBuilder } from '@/tests/message.builder.ts';
-import { EmptyMessageError, MessageTooLongError } from '@/message.ts';
+import { EmptyMessageError, MessageTooLongError } from '@/domain/message.ts';
 
 describe('Feature: Editing messaging', () => {
   let fixture: MessagingFixture;

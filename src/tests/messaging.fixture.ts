@@ -1,14 +1,14 @@
-import { StubDateProvider } from '@/stub.dateprovider.ts';
-import { InMemoryMessageRepository } from '@/message.inmemory.repository.ts';
+import { StubDateProvider } from '@/tests/stub.dateprovider.ts';
+import { InMemoryMessageRepository } from '@/tests/message.inmemory.repository.ts';
 import PostMessageUseCase, {
   PostMessageCommand,
-} from '@/post-message.usecase.ts';
-import { Message } from '@/message.ts';
+} from '@/application/usecase/post-message.usecase.ts';
+import { Message } from '@/domain/message.ts';
 import { expect } from 'vitest';
-import ViewTimelineUseCase from '@/view-timeline.usecase.ts';
+import ViewTimelineUseCase from '@/application/usecase/view-timeline.usecase.ts';
 import EditMessageUseCase, {
   EditMessageCommand,
-} from '@/edit-message.usecase.ts';
+} from '@/application/usecase/edit-message.usecase.ts';
 
 export const createMessagingFixture = () => {
   let thrownError: Error;

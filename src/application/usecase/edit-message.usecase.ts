@@ -1,4 +1,4 @@
-import { MessageRepository } from '@/message.repository.ts';
+import { MessageRepository } from '@/application/message.repository.ts';
 
 export type EditMessageCommand = {
   messageId: string;

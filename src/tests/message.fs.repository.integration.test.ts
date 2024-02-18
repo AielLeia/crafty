@@ -1,6 +1,6 @@
 import { afterAll, beforeEach, describe, expect, test } from 'vitest';
 import * as path from 'path';
-import { MessageFsRepository } from '@/message.fs.repository.ts';
+import { MessageFsRepository } from '@/infrastructure/message.fs.repository.ts';
 import * as fs from 'fs';
 import { messageBuilder } from '@/tests/message.builder.ts';
 
