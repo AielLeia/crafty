@@ -11,6 +11,11 @@ import EditMessageUseCase, {
   EditMessageCommand,
 } from '@/message/application/usecase/edit-message.usecase.ts';
 import { RealDateProvider } from '@/message/infrastructure/real-date.provider.ts';
+import {
+  FollowCommand,
+  UserFollowUseCase,
+} from '@/follow/application/usecase/user-follow.usecase.ts';
+import { FollowFsRepository } from '@/follow/infrastructure/follow.fs.repository.ts';
 
 const messageRepository = new MessageFsRepository();
 const dateProvider = new RealDateProvider();
@@ -23,6 +28,9 @@ const viewTimelineUseCase = new ViewTimelineUseCase(
   dateProvider
 );
 const editMessageUseCase = new EditMessageUseCase(messageRepository);
+
+const followRepository = new FollowFsRepository();
+const followUseCase = new UserFollowUseCase(followRepository);
 
 const program = new Command();
 
@@ -72,6 +80,23 @@ program
           };
           await editMessageUseCase.handle(editMessageCommand);
           console.log('Message edited');
+        } catch (e: unknown) {
+          console.error(e);
+        }
+      })
+  )
+  .addCommand(
+    new Command('follow')
+      .argument('<user-follower>', 'The user who want to follow')
+      .argument('<user-followee>', 'The followee user')
+      .action(async (userFollower, userFollowee) => {
+        try {
+          const followCommand: FollowCommand = {
+            name: userFollower,
+            userToFollow: userFollowee,
+          };
+          await followUseCase.handle(followCommand);
+          console.log(`${userFollower} follow ${userFollowee}`);
         } catch (e: unknown) {
           console.error(e);
         }

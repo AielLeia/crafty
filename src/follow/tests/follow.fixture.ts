@@ -34,7 +34,9 @@ export const createFollowFixture = () => {
 
     async thenUserFolloweesAre(expectedUserFollowees: UserFollowee) {
       expect(expectedUserFollowees).toEqual(
-        inMemoryFollowRepository.findUserByName(expectedUserFollowees.name)
+        await inMemoryFollowRepository.findUserByName(
+          expectedUserFollowees.name
+        )
       );
     },
 
