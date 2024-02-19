@@ -1,5 +1,5 @@
-import { UnknownUserError } from '@/follow/domain/error/unknown-user.error.ts';
-import { FollowRepository } from '@/follow/application/follow.repository.ts';
+import { UnknownUserError } from '@/message/domain/error/unknown-user.error.ts';
+import { FollowRepository } from '@/message/application/follow.repository.ts';
 
 export type FollowCommand = { name: string; userToFollow: string };
 

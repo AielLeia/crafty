@@ -1,5 +1,5 @@
-import { UserFollowee } from '@/follow/domain/user-followee.ts';
-import { FollowRepository } from '@/follow/application/follow.repository.ts';
+import { UserFollowee } from '@/message/domain/user-followee.ts';
+import { FollowRepository } from '@/message/application/follow.repository.ts';
 
 export class InMemoryFollowRepository implements FollowRepository {
   users: Map<string, UserFollowee> = new Map();

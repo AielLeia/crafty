@@ -1,4 +1,4 @@
-import { MultipleTimeFollowError } from '@/follow/domain/error/multiple-time-follow.error.ts';
+import { MultipleTimeFollowError } from '@/message/domain/error/multiple-time-follow.error.ts';
 
 export class Followees {
   constructor(private readonly names: string[] = []) {}

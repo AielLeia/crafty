@@ -1,4 +1,4 @@
-import { UserFollowee } from '@/follow/domain/user-followee.ts';
+import { UserFollowee } from '@/message/domain/user-followee.ts';
 
 export interface FollowRepository {
   findUserByName(userName: string): Promise<UserFollowee>;

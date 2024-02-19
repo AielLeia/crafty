@@ -2,10 +2,10 @@ import { beforeEach, describe, test } from 'vitest';
 import {
   createFollowFixture,
   FollowFixture,
-} from '@/follow/tests/follow.fixture.ts';
-import { followBuilder } from '@/follow/tests/follow.builder.ts';
-import { MultipleTimeFollowError } from '@/follow/domain/error/multiple-time-follow.error.ts';
-import { UnknownUserError } from '@/follow/domain/error/unknown-user.error.ts';
+} from '@/message/tests/follow.fixture.ts';
+import { followBuilder } from '@/message/tests/follow.builder.ts';
+import { MultipleTimeFollowError } from '@/message/domain/error/multiple-time-follow.error.ts';
+import { UnknownUserError } from '@/message/domain/error/unknown-user.error.ts';
 
 describe('Feature: Following user', () => {
   let fixture: FollowFixture;

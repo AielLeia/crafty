@@ -14,8 +14,8 @@ import { RealDateProvider } from '@/message/infrastructure/real-date.provider.ts
 import {
   FollowCommand,
   UserFollowUseCase,
-} from '@/follow/application/usecase/user-follow.usecase.ts';
-import { FollowFsRepository } from '@/follow/infrastructure/follow.fs.repository.ts';
+} from '@/message/application/usecase/user-follow.usecase.ts';
+import { FollowFsRepository } from '@/message/infrastructure/follow.fs.repository.ts';
 
 const messageRepository = new MessageFsRepository();
 const dateProvider = new RealDateProvider();
