@@ -1,5 +1,5 @@
-import { FollowRepository } from '@/message/application/follow.repository.ts';
-import { UserFollowee } from '@/message/domain/user-followee.ts';
+import { FollowRepository } from '@/application/follow.repository.ts';
+import { UserFollowee } from '@/domain/user-followee.ts';
 import path from 'path';
 import fs from 'fs';
 

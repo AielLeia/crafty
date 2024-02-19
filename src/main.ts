@@ -4,18 +4,18 @@ import 'module-alias/register';
 import { Command } from 'commander';
 import PostMessageUseCase, {
   PostMessageCommand,
-} from '@/message/application/usecase/post-message.usecase.ts';
-import { MessageFsRepository } from '@/message/infrastructure/message.fs.repository.ts';
-import ViewTimelineUseCase from '@/message/application/usecase/view-timeline.usecase.ts';
+} from '@/application/usecase/post-message.usecase.ts';
+import { MessageFsRepository } from '@/infrastructure/message.fs.repository.ts';
+import ViewTimelineUseCase from '@/application/usecase/view-timeline.usecase.ts';
 import EditMessageUseCase, {
   EditMessageCommand,
-} from '@/message/application/usecase/edit-message.usecase.ts';
-import { RealDateProvider } from '@/message/infrastructure/real-date.provider.ts';
+} from '@/application/usecase/edit-message.usecase.ts';
+import { RealDateProvider } from '@/infrastructure/real-date.provider.ts';
 import {
   FollowCommand,
   UserFollowUseCase,
-} from '@/message/application/usecase/user-follow.usecase.ts';
-import { FollowFsRepository } from '@/message/infrastructure/follow.fs.repository.ts';
+} from '@/application/usecase/user-follow.usecase.ts';
+import { FollowFsRepository } from '@/infrastructure/follow.fs.repository.ts';
 
 const messageRepository = new MessageFsRepository();
 const dateProvider = new RealDateProvider();

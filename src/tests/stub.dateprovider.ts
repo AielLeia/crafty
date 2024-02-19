@@ -1,4 +1,4 @@
-import { DateProvider } from '@/message/application/date.provider.ts';
+import { DateProvider } from '@/application/date.provider.ts';
 
 export class StubDateProvider implements DateProvider {
   now: Date = new Date();

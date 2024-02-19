@@ -1,5 +1,5 @@
-import { MessageRepository } from '@/message/application/message.repository.ts';
-import { DateProvider } from '@/message/application/date.provider.ts';
+import { MessageRepository } from '@/application/message.repository.ts';
+import { DateProvider } from '@/application/date.provider.ts';
 
 const ONE_MINUTE_IN_MS = 60000;
 

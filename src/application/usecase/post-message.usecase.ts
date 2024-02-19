@@ -1,6 +1,6 @@
-import { MessageRepository } from '@/message/application/message.repository.ts';
-import { Message } from '@/message/domain/message.ts';
-import { DateProvider } from '@/message/application/date.provider.ts';
+import { MessageRepository } from '@/application/message.repository.ts';
+import { Message } from '@/domain/message.ts';
+import { DateProvider } from '@/application/date.provider.ts';
 
 export type PostMessageCommand = {
   id: string;

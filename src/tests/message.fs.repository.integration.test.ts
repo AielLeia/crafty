@@ -1,8 +1,8 @@
 import { afterAll, beforeEach, describe, expect, test } from 'vitest';
 import * as path from 'path';
-import { MessageFsRepository } from '@/message/infrastructure/message.fs.repository.ts';
+import { MessageFsRepository } from '@/infrastructure/message.fs.repository.ts';
 import * as fs from 'fs';
-import { messageBuilder } from '@/message/tests/message.builder.ts';
+import { messageBuilder } from '@/tests/message.builder.ts';
 
 const testMessagePath = path.join(__dirname, 'message.test.json');
 

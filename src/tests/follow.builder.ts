@@ -1,4 +1,4 @@
-import { UserFollowee } from '@/message/domain/user-followee.ts';
+import { UserFollowee } from '@/domain/user-followee.ts';
 
 export const followBuilder = ({
   name = 'user name',

@@ -1,11 +1,11 @@
 import { beforeEach, describe, test } from 'vitest';
-import { MessageTooLongError } from '@/message/domain/error/message-too-long.error.ts';
-import { EmptyMessageError } from '@/message/domain/error/empty-message.error.ts';
+import { MessageTooLongError } from '@/domain/error/message-too-long.error.ts';
+import { EmptyMessageError } from '@/domain/error/empty-message.error.ts';
 import {
   createMessagingFixture,
   MessagingFixture,
-} from '@/message/tests/messaging.fixture.ts';
-import { messageBuilder } from '@/message/tests/message.builder.ts';
+} from '@/tests/messaging.fixture.ts';
+import { messageBuilder } from '@/tests/message.builder.ts';
 
 describe('Feature: Posting a message', () => {
   let fixture: MessagingFixture;

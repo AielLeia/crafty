@@ -1,4 +1,4 @@
-import { MessageText } from '@/message/domain/valueobject/message-text.ts';
+import { MessageText } from '@/domain/valueobject/message-text.ts';
 
 export class Message {
   constructor(
