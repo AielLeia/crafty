@@ -8,7 +8,7 @@ export class FollowFsRepository implements FollowRepository {
     private readonly followPath = path.join(__dirname, 'follow.json')
   ) {}
 
-  async findUserByName(userName: string): Promise<UserFollowee> {
+  async getFolloweesOf(userName: string): Promise<UserFollowee> {
     const followees = await this.getAllFollower();
     return followees.find((f) => f.name === userName)!;
   }

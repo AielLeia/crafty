@@ -83,6 +83,8 @@ export const createMessagingFixture = () => {
     thenErrorShouldBe(expectedError: new () => Error) {
       expect(thrownError).toBeInstanceOf(expectedError);
     },
+
+    messageRepository,
   };
 };
 

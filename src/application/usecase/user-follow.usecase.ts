@@ -7,11 +7,11 @@ export class UserFollowUseCase {
   constructor(private readonly followRepository: FollowRepository) {}
 
   async handle(followCommand: FollowCommand) {
-    const currentUser = await this.followRepository.findUserByName(
+    const currentUser = await this.followRepository.getFolloweesOf(
       followCommand.name
     );
 
-    const userToFollow = await this.followRepository.findUserByName(
+    const userToFollow = await this.followRepository.getFolloweesOf(
       followCommand.userToFollow
     );
 

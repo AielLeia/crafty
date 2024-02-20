@@ -4,7 +4,7 @@ import { FollowRepository } from '@/application/follow.repository.ts';
 export class InMemoryFollowRepository implements FollowRepository {
   users: Map<string, UserFollowee> = new Map();
 
-  findUserByName(userName: string): Promise<UserFollowee> {
+  getFolloweesOf(userName: string): Promise<UserFollowee> {
     return Promise.resolve(this.users.get(userName)!);
   }
 

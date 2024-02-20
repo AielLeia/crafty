@@ -8,18 +8,18 @@ import { InMemoryFollowRepository } from '@/tests/follow.inmemory.repository.ts'
 
 export const createFollowFixture = () => {
   let thrownError: Error;
-  const inMemoryFollowRepository = new InMemoryFollowRepository();
-  const userFollowUseCase = new UserFollowUseCase(inMemoryFollowRepository);
+  const followeRepository = new InMemoryFollowRepository();
+  const userFollowUseCase = new UserFollowUseCase(followeRepository);
 
   return {
     async givenSubscribedUsers(initialSubscribedUser: UserFollowee[]) {
-      await inMemoryFollowRepository.givenExistingUserAndThereFollowees(
+      await followeRepository.givenExistingUserAndThereFollowees(
         initialSubscribedUser
       );
     },
 
     async givenUserFollowees(initialUserFollowees: UserFollowee) {
-      await inMemoryFollowRepository.save(initialUserFollowees);
+      await followeRepository.save(initialUserFollowees);
     },
 
     async whenUserFollow(followCommand: FollowCommand) {
@@ -34,15 +34,15 @@ export const createFollowFixture = () => {
 
     async thenUserFolloweesAre(expectedUserFollowees: UserFollowee) {
       expect(expectedUserFollowees).toEqual(
-        await inMemoryFollowRepository.findUserByName(
-          expectedUserFollowees.name
-        )
+        await followeRepository.getFolloweesOf(expectedUserFollowees.name)
       );
     },
 
     async thenErrorShouldBe(expectedError: new () => Error) {
       expect(thrownError).toBeInstanceOf(expectedError);
     },
+
+    followeRepository,
   };
 };
 

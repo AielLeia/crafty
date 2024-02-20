@@ -36,7 +36,7 @@ describe('FollowFsRepository', () => {
       ])
     );
 
-    const charlie = await followRepository.findUserByName('Charlie');
+    const charlie = await followRepository.getFolloweesOf('Charlie');
     expect(charlie).toEqual(
       followBuilder({
         name: 'Charlie',
