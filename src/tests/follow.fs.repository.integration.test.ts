@@ -15,7 +15,7 @@ describe('FollowFsRepository', () => {
     await fs.promises.unlink(testFollowPath);
   });
 
-  test('findUserByName() can get a user by it name', async () => {
+  test('getFolloweesOf() can get a user by it name', async () => {
     const followRepository = new FollowFsRepository(testFollowPath);
 
     await fs.promises.writeFile(
