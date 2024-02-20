@@ -16,6 +16,7 @@ import {
   UserFollowUseCase,
 } from '@/application/usecase/user-follow.usecase.ts';
 import { FollowFsRepository } from '@/infrastructure/follow.fs.repository.ts';
+import { ViewWallUseCase } from '@/application/usecase/view-wall.usecase.ts';
 
 const messageRepository = new MessageFsRepository();
 const dateProvider = new RealDateProvider();
@@ -31,6 +32,12 @@ const editMessageUseCase = new EditMessageUseCase(messageRepository);
 
 const followRepository = new FollowFsRepository();
 const followUseCase = new UserFollowUseCase(followRepository);
+
+const viewWallUseCase = new ViewWallUseCase(
+  messageRepository,
+  followRepository,
+  dateProvider
+);
 
 const program = new Command();
 
@@ -97,6 +104,18 @@ program
           };
           await followUseCase.handle(followCommand);
           console.log(`${userFollower} follow ${userFollowee}`);
+        } catch (e: unknown) {
+          console.error(e);
+        }
+      })
+  )
+  .addCommand(
+    new Command('wall')
+      .argument('<user>', 'the user to view the wall of')
+      .action(async (user) => {
+        const wall = await viewWallUseCase.handle({ user });
+        console.table(wall);
+        try {
         } catch (e: unknown) {
           console.error(e);
         }
