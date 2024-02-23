@@ -22,6 +22,7 @@ export class MessagePrismaRepository implements MessageRepository {
         publishedAt: messageData.publishedAt,
       },
       create: {
+        id: messageData.id,
         text: messageData.text,
         authorId: messageData.author,
         publishedAt: messageData.publishedAt,

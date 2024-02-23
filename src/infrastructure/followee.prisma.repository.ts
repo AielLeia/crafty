@@ -15,11 +15,14 @@ export class FolloweePrismaRepository implements FollowRepository {
       followees: user.following.map((f) => f.name),
     });
   }
+
   async save(user: UserFollowee): Promise<void> {
     await this.upsertUser(user.name);
-    user.followees.data.forEach((followee) => this.upsertUser(followee));
-    user.followees.data.forEach((followee) => {
-      this.prismaClient.user.update({
+    for (let followee of user.followees.data) {
+      await this.upsertUser(followee);
+    }
+    for (let followee of user.followees.data) {
+      await this.prismaClient.user.update({
         where: { name: user.name },
         data: {
           following: {
@@ -32,7 +35,7 @@ export class FolloweePrismaRepository implements FollowRepository {
           },
         },
       });
-    });
+    }
   }
 
   private async upsertUser(user: string) {
