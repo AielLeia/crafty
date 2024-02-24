@@ -9,6 +9,7 @@ import ViewTimelineUseCase from '@/application/usecase/view-timeline.usecase.ts'
 import EditMessageUseCase, {
   EditMessageCommand,
 } from '@/application/usecase/edit-message.usecase.ts';
+import { TimelineDefaultPresenter } from '@/app/timeline.default.presenter.ts';
 
 export const createMessagingFixture = () => {
   let thrownError: Error;
@@ -25,11 +26,9 @@ export const createMessagingFixture = () => {
     messageRepository,
     dateProvider
   );
-  const viewTimelineUseCase = new ViewTimelineUseCase(
-    messageRepository,
-    dateProvider
-  );
+  const viewTimelineUseCase = new ViewTimelineUseCase(messageRepository);
   const editMessageUseCase = new EditMessageUseCase(messageRepository);
+  const defaultTimelinePresenter = new TimelineDefaultPresenter(dateProvider);
 
   return {
     givenTheFollowingMessagesExist(messages: Message[]) {
@@ -41,7 +40,10 @@ export const createMessagingFixture = () => {
     },
 
     async whenUserSeesTheTimelineOf(author: string) {
-      timeline = await viewTimelineUseCase.handle({ user: author });
+      timeline = await viewTimelineUseCase.handle(
+        { user: author },
+        defaultTimelinePresenter
+      );
     },
 
     async whenUserPostAMessage(postMessageCommand: PostMessageCommand) {

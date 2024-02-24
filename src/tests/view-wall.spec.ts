@@ -10,6 +10,7 @@ import { StubDateProvider } from '@/tests/stub.dateprovider.ts';
 import { ViewWallUseCase } from '@/application/usecase/view-wall.usecase.ts';
 import { MessageRepository } from '@/application/message.repository.ts';
 import { FollowRepository } from '@/application/follow.repository.ts';
+import { TimelineDefaultPresenter } from '@/app/timeline.default.presenter.ts';
 
 describe('Feature: Viewing user wall', () => {
   let fixture: Fixture;
@@ -77,9 +78,9 @@ const createFixture = ({
   let wall: { author: string; text: string; publicationTime: string }[];
   const viewWallUseCase = new ViewWallUseCase(
     messageRepository,
-    followeeRepository,
-    dateProvider
+    followeeRepository
   );
+  const defaultTimelinePresenter = new TimelineDefaultPresenter(dateProvider);
 
   return {
     givenNowIs(_now: Date) {
@@ -87,7 +88,7 @@ const createFixture = ({
     },
 
     async whenTheUserSeesTheWallOf(user: string) {
-      wall = await viewWallUseCase.handle({ user });
+      wall = await viewWallUseCase.handle({ user }, defaultTimelinePresenter);
     },
 
     async thenUserShouldSee(

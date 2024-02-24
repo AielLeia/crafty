@@ -11,7 +11,7 @@
     "build:api": "tsc --noEmit && node build.api.cjs",
     "run:api": "node dist/api.js",
     "link": "pnpm run build:cli && pnpm link --global",
-    "test": "vitest --watch --reporter verbose",
+    "test": "vitest --watch --reporter verbose spec",
     "test:int": "vitest run --reporter verbose integration"
   },
   "bin": {

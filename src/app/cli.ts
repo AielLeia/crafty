@@ -18,6 +18,7 @@ import { ViewWallUseCase } from '@/application/usecase/view-wall.usecase.ts';
 import { PrismaClient } from '@prisma/client';
 import { MessagePrismaRepository } from '@/infrastructure/message.prisma.repository.ts';
 import { FolloweePrismaRepository } from '@/infrastructure/followee.prisma.repository.ts';
+import { TimelineDefaultPresenter } from '@/app/timeline.default.presenter.ts';
 
 const prismaClient = new PrismaClient();
 
@@ -27,10 +28,7 @@ const postMessageUseCase = new PostMessageUseCase(
   messageRepository,
   dateProvider
 );
-const viewTimelineUseCase = new ViewTimelineUseCase(
-  messageRepository,
-  dateProvider
-);
+const viewTimelineUseCase = new ViewTimelineUseCase(messageRepository);
 const editMessageUseCase = new EditMessageUseCase(messageRepository);
 
 const followRepository = new FolloweePrismaRepository(prismaClient);
@@ -38,9 +36,10 @@ const followUseCase = new UserFollowUseCase(followRepository);
 
 const viewWallUseCase = new ViewWallUseCase(
   messageRepository,
-  followRepository,
-  dateProvider
+  followRepository
 );
+
+const timelineDefaultPresenter = new TimelineDefaultPresenter(dateProvider);
 
 const program = new Command();
 
@@ -71,7 +70,10 @@ program
       .argument('<user>', 'the user to view the timeline of')
       .action(async (user) => {
         try {
-          const timeline = await viewTimelineUseCase.handle({ user });
+          const timeline = await viewTimelineUseCase.handle(
+            { user },
+            timelineDefaultPresenter
+          );
           console.table(timeline);
         } catch (e: unknown) {
           console.error(e);
@@ -116,7 +118,10 @@ program
     new Command('wall')
       .argument('<user>', 'the user to view the wall of')
       .action(async (user) => {
-        const wall = await viewWallUseCase.handle({ user });
+        const wall = await viewWallUseCase.handle(
+          { user },
+          timelineDefaultPresenter
+        );
         console.table(wall);
         try {
         } catch (e: unknown) {

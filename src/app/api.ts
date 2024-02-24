@@ -17,6 +17,7 @@ import { ViewWallUseCase } from '@/application/usecase/view-wall.usecase.ts';
 import { PrismaClient } from '@prisma/client';
 import { MessagePrismaRepository } from '@/infrastructure/message.prisma.repository.ts';
 import { FolloweePrismaRepository } from '@/infrastructure/followee.prisma.repository.ts';
+import { TimelineApiPresenter } from '@/app/timeline.api.presenter.ts';
 
 const prismaClient = new PrismaClient();
 
@@ -26,10 +27,7 @@ const postMessageUseCase = new PostMessageUseCase(
   messageRepository,
   dateProvider
 );
-const viewTimelineUseCase = new ViewTimelineUseCase(
-  messageRepository,
-  dateProvider
-);
+const viewTimelineUseCase = new ViewTimelineUseCase(messageRepository);
 const editMessageUseCase = new EditMessageUseCase(messageRepository);
 
 const followRepository = new FolloweePrismaRepository(prismaClient);
@@ -37,9 +35,10 @@ const followUseCase = new UserFollowUseCase(followRepository);
 
 const viewWallUseCase = new ViewWallUseCase(
   messageRepository,
-  followRepository,
-  dateProvider
+  followRepository
 );
+
+const timelinePresenter = new TimelineApiPresenter();
 
 const fastify = Fastify({ logger: true });
 
@@ -104,13 +103,16 @@ const routes = async (fastifyInstance: FastifyInstance) => {
   fastifyInstance.get<{
     Querystring: { user: string };
     Reply:
-      | { author: string; text: string; publicationTime: string }[]
+      | { id: string; author: string; publishedAt: Date; text: string }[]
       | httpErrors.HttpError<500>;
   }>('/view', {}, async (request, reply) => {
     try {
-      const timeline = await viewTimelineUseCase.handle({
-        user: request.query.user,
-      });
+      const timeline = await viewTimelineUseCase.handle(
+        {
+          user: request.query.user,
+        },
+        timelinePresenter
+      );
       reply.status(200).send(timeline);
     } catch (e) {
       if (e instanceof Error) {
@@ -122,13 +124,16 @@ const routes = async (fastifyInstance: FastifyInstance) => {
   fastifyInstance.get<{
     Querystring: { user: string };
     Reply:
-      | { author: string; text: string; publicationTime: string }[]
+      | { id: string; author: string; publishedAt: Date; text: string }[]
       | httpErrors.HttpError<500>;
   }>('/wall', {}, async (request, reply) => {
     try {
-      const timeline = await viewWallUseCase.handle({
-        user: request.query.user,
-      });
+      const timeline = await viewWallUseCase.handle(
+        {
+          user: request.query.user,
+        },
+        timelinePresenter
+      );
       reply.status(200).send(timeline);
     } catch (e) {
       if (e instanceof Error) {
