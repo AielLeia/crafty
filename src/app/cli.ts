@@ -5,7 +5,6 @@ import { Command } from 'commander';
 import PostMessageUseCase, {
   PostMessageCommand,
 } from '@/application/usecase/post-message.usecase.ts';
-import { MessageFsRepository } from '@/infrastructure/message.fs.repository.ts';
 import ViewTimelineUseCase from '@/application/usecase/view-timeline.usecase.ts';
 import EditMessageUseCase, {
   EditMessageCommand,
@@ -15,10 +14,14 @@ import {
   FollowCommand,
   UserFollowUseCase,
 } from '@/application/usecase/user-follow.usecase.ts';
-import { FollowFsRepository } from '@/infrastructure/follow.fs.repository.ts';
 import { ViewWallUseCase } from '@/application/usecase/view-wall.usecase.ts';
+import { PrismaClient } from '@prisma/client';
+import { MessagePrismaRepository } from '@/infrastructure/message.prisma.repository.ts';
+import { FolloweePrismaRepository } from '@/infrastructure/followee.prisma.repository.ts';
 
-const messageRepository = new MessageFsRepository();
+const prismaClient = new PrismaClient();
+
+const messageRepository = new MessagePrismaRepository(prismaClient);
 const dateProvider = new RealDateProvider();
 const postMessageUseCase = new PostMessageUseCase(
   messageRepository,
@@ -30,7 +33,7 @@ const viewTimelineUseCase = new ViewTimelineUseCase(
 );
 const editMessageUseCase = new EditMessageUseCase(messageRepository);
 
-const followRepository = new FollowFsRepository();
+const followRepository = new FolloweePrismaRepository(prismaClient);
 const followUseCase = new UserFollowUseCase(followRepository);
 
 const viewWallUseCase = new ViewWallUseCase(

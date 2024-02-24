@@ -3,11 +3,11 @@ const path = require('node:path');
 require('esbuild')
   .build({
     logLevel: 'info',
-    entryPoints: ['src/main.ts'],
+    entryPoints: ['src/app/api.ts'],
     bundle: true,
     platform: 'node',
     format: 'cjs',
-    outfile: 'dist/main.js',
+    outfile: 'dist/api.js',
     plugins: [
       aliasPath({
         alias: {
