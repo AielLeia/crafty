@@ -58,8 +58,12 @@ program
         };
 
         try {
-          await postMessageUseCase.handle(postMessageCommand);
-          console.log('Message poster');
+          const result = await postMessageUseCase.handle(postMessageCommand);
+          if (result.isOk()) {
+            console.log('Message poster');
+          } else {
+            console.log(result.error);
+          }
         } catch (e: unknown) {
           console.error(e);
         }
@@ -85,13 +89,17 @@ program
       .argument('<message-id>', 'The message id of the message to edit')
       .argument('<message>', 'The new text')
       .action(async (messageId, message) => {
+        const editMessageCommand: EditMessageCommand = {
+          messageId,
+          text: message,
+        };
         try {
-          const editMessageCommand: EditMessageCommand = {
-            messageId,
-            text: message,
-          };
-          await editMessageUseCase.handle(editMessageCommand);
-          console.log('Message edited');
+          const result = await editMessageUseCase.handle(editMessageCommand);
+          if (result.isOk()) {
+            console.log('Message edited');
+          } else {
+            console.error(result.error);
+          }
         } catch (e: unknown) {
           console.error(e);
         }

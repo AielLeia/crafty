@@ -47,22 +47,16 @@ export const createMessagingFixture = () => {
     },
 
     async whenUserPostAMessage(postMessageCommand: PostMessageCommand) {
-      try {
-        await postMessageUseCase.handle(postMessageCommand);
-      } catch (e: unknown) {
-        if (e instanceof Error) {
-          thrownError = e;
-        }
+      const result = await postMessageUseCase.handle(postMessageCommand);
+      if (result.isErr()) {
+        thrownError = result.error;
       }
     },
 
     async whenUserEditsMessage(editMessageCommand: EditMessageCommand) {
-      try {
-        await editMessageUseCase.handle(editMessageCommand);
-      } catch (e: unknown) {
-        if (e instanceof Error) {
-          thrownError = e;
-        }
+      const result = await editMessageUseCase.handle(editMessageCommand);
+      if (result.isErr()) {
+        thrownError = result.error;
       }
     },
 
