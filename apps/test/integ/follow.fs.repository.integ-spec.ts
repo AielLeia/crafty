@@ -1,8 +1,8 @@
 import { afterAll, beforeEach, describe, expect, test } from 'vitest';
 import path from 'path';
 import fs from 'fs';
-import { followBuilder } from '@/tests/follow.builder.ts';
-import { FollowFsRepository } from '@/infrastructure/follow.fs.repository.ts';
+import { FollowFsRepository } from '@/src/repositories/follow.fs.repository';
+import { followBuilder } from '@aiel/crafty';
 
 const testFollowPath = path.join(__dirname, 'follow.test.json');
 

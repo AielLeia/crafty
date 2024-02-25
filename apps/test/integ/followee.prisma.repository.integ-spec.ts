@@ -13,8 +13,8 @@ import {
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import { PrismaClient } from '@prisma/client';
-import { FolloweePrismaRepository } from '@/infrastructure/followee.prisma.repository.ts';
-import { followBuilder } from '@/tests/follow.builder.ts';
+import { FolloweePrismaRepository } from '@/src/repositories/followee.prisma.repository';
+import { followBuilder } from '@aiel/crafty';
 
 const asyncExec = promisify(exec);
 

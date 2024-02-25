@@ -2,10 +2,13 @@ import { beforeEach, describe, expect, test } from 'vitest';
 import {
   createMessagingFixture,
   MessagingFixture,
-} from '@/tests/messaging.fixture.ts';
-import { createFollowFixture, FollowFixture } from '@/tests/follow.fixture.ts';
-import { messageBuilder } from '@/tests/message.builder.ts';
-import { followBuilder } from '@/tests/follow.builder.ts';
+} from '@/fixtures/messaging.fixture.ts';
+import {
+  createFollowFixture,
+  FollowFixture,
+} from '@/fixtures/follow.fixture.ts';
+import { messageBuilder } from '@/fixtures/message.builder.ts';
+import { followBuilder } from '@/fixtures/follow.builder.ts';
 import { StubDateProvider } from '@/tests/stub.dateprovider.ts';
 import { ViewWallUseCase } from '@/application/usecase/view-wall.usecase.ts';
 import { MessageRepository } from '@/application/message.repository.ts';

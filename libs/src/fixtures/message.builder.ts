@@ -1,11 +1,19 @@
 import { Message } from '@/domain/message.ts';
 
+type MessageBuilder = {
+  withId(_id: string): MessageBuilder;
+  authoredBy(_author: string): MessageBuilder;
+  withText(_text: string): MessageBuilder;
+  withPublishedAt(_publishedAt: Date): MessageBuilder;
+  build(): Message;
+};
+
 export const messageBuilder = ({
   id = 'message-id',
   author = 'author',
   text = 'Some text',
   publishedAt = new Date('2024-02-17T18:10:00.000Z'),
-} = {}) => {
+} = {}): MessageBuilder => {
   const props = { id, author, text, publishedAt };
   return {
     withId(_id: string) {

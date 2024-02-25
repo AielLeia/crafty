@@ -1,9 +1,16 @@
 import { UserFollowee } from '@/domain/user-followee.ts';
 
+type FollowBuilder = {
+  withName(_name: string): FollowBuilder;
+  addFollowee(_followee: string): FollowBuilder;
+  addFollowees(..._followees: string[]): FollowBuilder;
+  build(): UserFollowee;
+};
+
 export const followBuilder = ({
   name = 'user name',
   followees = [],
-}: { name?: string; followees?: string[] } = {}) => {
+}: { name?: string; followees?: string[] } = {}): FollowBuilder => {
   const props = { name, followees };
   return {
     withName(_name: string) {

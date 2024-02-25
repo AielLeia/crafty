@@ -13,8 +13,8 @@ import {
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import { PrismaClient } from '@prisma/client';
-import { MessagePrismaRepository } from '@/infrastructure/message.prisma.repository.ts';
-import { messageBuilder } from '@/tests/message.builder.ts';
+import { MessagePrismaRepository } from '@/src/repositories/message.prisma.repository';
+import { messageBuilder } from '@aiel/crafty';
 
 const asyncExec = promisify(exec);
 

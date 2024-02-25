@@ -1,5 +1,5 @@
-import { FollowRepository } from '@/application/follow.repository.ts';
-import { UserFollowee } from '@/domain/user-followee';
+import { FollowRepository } from '@aiel/crafty';
+import { UserFollowee } from '@aiel/crafty';
 import { PrismaClient } from '@prisma/client';
 
 export class FolloweePrismaRepository implements FollowRepository {

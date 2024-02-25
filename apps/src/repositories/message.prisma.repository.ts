@@ -1,5 +1,5 @@
-import { MessageRepository } from '@/application/message.repository.ts';
-import { Message } from '@/domain/message';
+import { MessageRepository } from '@aiel/crafty';
+import { Message } from '@aiel/crafty';
 import { PrismaClient } from '@prisma/client';
 
 export class MessagePrismaRepository implements MessageRepository {

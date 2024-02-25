@@ -4,8 +4,8 @@ import { EmptyMessageError } from '@/domain/error/empty-message.error.ts';
 import {
   createMessagingFixture,
   MessagingFixture,
-} from '@/tests/messaging.fixture.ts';
-import { messageBuilder } from '@/tests/message.builder.ts';
+} from '@/fixtures/messaging.fixture.ts';
+import { messageBuilder } from '@/fixtures/message.builder.ts';
 
 describe('Feature: Posting a message', () => {
   let fixture: MessagingFixture;

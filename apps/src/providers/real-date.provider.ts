@@ -1,4 +1,4 @@
-import { DateProvider } from '@/application/date.provider.ts';
+import { DateProvider } from '@aiel/crafty';
 
 export class RealDateProvider implements DateProvider {
   getNow(): Date {
