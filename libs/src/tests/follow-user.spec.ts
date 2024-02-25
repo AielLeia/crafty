@@ -1,9 +1,10 @@
-import { beforeEach, describe, test } from 'vitest';
-import {
-  createFollowFixture,
-  FollowFixture,
-} from '@/fixtures/follow.fixture.ts';
 import { followBuilder } from '@/fixtures/follow.builder.ts';
+import {
+  FollowFixture,
+  createFollowFixture,
+} from '@/fixtures/follow.fixture.ts';
+import { beforeEach, describe, test } from 'vitest';
+
 import { MultipleTimeFollowError } from '@/domain/error/multiple-time-follow.error.ts';
 import { UnknownUserError } from '@/domain/error/unknown-user.error.ts';
 

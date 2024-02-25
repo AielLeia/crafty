@@ -1,4 +1,5 @@
 import { UnknownUserError } from '@/domain/error/unknown-user.error.ts';
+
 import { FollowRepository } from '@/application/follow.repository.ts';
 
 export type FollowCommand = { name: string; userToFollow: string };

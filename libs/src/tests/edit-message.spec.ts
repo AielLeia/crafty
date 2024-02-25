@@ -1,11 +1,12 @@
-import { beforeEach, describe, test } from 'vitest';
-import {
-  createMessagingFixture,
-  MessagingFixture,
-} from '@/fixtures/messaging.fixture.ts';
 import { messageBuilder } from '@/fixtures/message.builder.ts';
-import { MessageTooLongError } from '@/domain/error/message-too-long.error.ts';
+import {
+  MessagingFixture,
+  createMessagingFixture,
+} from '@/fixtures/messaging.fixture.ts';
+import { beforeEach, describe, test } from 'vitest';
+
 import { EmptyMessageError } from '@/domain/error/empty-message.error.ts';
+import { MessageTooLongError } from '@/domain/error/message-too-long.error.ts';
 
 describe('Feature: Editing messaging', () => {
   let fixture: MessagingFixture;

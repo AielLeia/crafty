@@ -1,19 +1,20 @@
-import { beforeEach, describe, expect, test } from 'vitest';
+import { TimelineDefaultPresenter } from '@/app/timeline.default.presenter.ts';
+import { followBuilder } from '@/fixtures/follow.builder.ts';
 import {
-  createMessagingFixture,
-  MessagingFixture,
-} from '@/fixtures/messaging.fixture.ts';
-import {
-  createFollowFixture,
   FollowFixture,
+  createFollowFixture,
 } from '@/fixtures/follow.fixture.ts';
 import { messageBuilder } from '@/fixtures/message.builder.ts';
-import { followBuilder } from '@/fixtures/follow.builder.ts';
+import {
+  MessagingFixture,
+  createMessagingFixture,
+} from '@/fixtures/messaging.fixture.ts';
 import { StubDateProvider } from '@/tests/stub.dateprovider.ts';
-import { ViewWallUseCase } from '@/application/usecase/view-wall.usecase.ts';
-import { MessageRepository } from '@/application/message.repository.ts';
+import { beforeEach, describe, expect, test } from 'vitest';
+
 import { FollowRepository } from '@/application/follow.repository.ts';
-import { TimelineDefaultPresenter } from '@/app/timeline.default.presenter.ts';
+import { MessageRepository } from '@/application/message.repository.ts';
+import { ViewWallUseCase } from '@/application/usecase/view-wall.usecase.ts';
 
 describe('Feature: Viewing user wall', () => {
   let fixture: Fixture;

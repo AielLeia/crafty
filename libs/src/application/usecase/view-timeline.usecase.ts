@@ -1,5 +1,6 @@
-import { MessageRepository } from '@/application/message.repository.ts';
 import { Timeline } from '@/domain/timeline.ts';
+
+import { MessageRepository } from '@/application/message.repository.ts';
 import { TimelinePresenter } from '@/application/timeline.presenter.ts';
 
 export class ViewTimelineUseCase {

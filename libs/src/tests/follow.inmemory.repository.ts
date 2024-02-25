@@ -1,4 +1,5 @@
 import { UserFollowee } from '@/domain/user-followee.ts';
+
 import { FollowRepository } from '@/application/follow.repository.ts';
 
 export class InMemoryFollowRepository implements FollowRepository {

@@ -1,6 +1,7 @@
-import { MessageRepository } from '@/application/message.repository.ts';
 import { EmptyMessageError } from '@/domain/error/empty-message.error.ts';
 import { MessageTooLongError } from '@/domain/error/message-too-long.error.ts';
+
+import { MessageRepository } from '@/application/message.repository.ts';
 import { Err, Ok, Result } from '@/application/result.ts';
 
 export type EditMessageCommand = {

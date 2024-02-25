@@ -1,5 +1,5 @@
-import { MessageTooLongError } from '@/domain/error/message-too-long.error.ts';
 import { EmptyMessageError } from '@/domain/error/empty-message.error.ts';
+import { MessageTooLongError } from '@/domain/error/message-too-long.error.ts';
 
 export class MessageText {
   private constructor(readonly value: string) {}

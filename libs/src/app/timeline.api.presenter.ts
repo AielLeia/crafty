@@ -1,5 +1,6 @@
-import { TimelinePresenter } from '@/application/timeline.presenter.ts';
 import { Timeline } from '@/domain/timeline';
+
+import { TimelinePresenter } from '@/application/timeline.presenter.ts';
 
 export class TimelineApiPresenter
   implements

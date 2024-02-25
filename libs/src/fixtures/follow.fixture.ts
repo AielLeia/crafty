@@ -1,10 +1,12 @@
+import { InMemoryFollowRepository } from '@/tests/follow.inmemory.repository.ts';
 import { expect } from 'vitest';
+
 import { UserFollowee } from '@/domain/user-followee.ts';
+
 import {
   FollowCommand,
   UserFollowUseCase,
 } from '@/application/usecase/user-follow.usecase.ts';
-import { InMemoryFollowRepository } from '@/tests/follow.inmemory.repository.ts';
 
 export const createFollowFixture = () => {
   let thrownError: Error;

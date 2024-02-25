@@ -1,8 +1,9 @@
-import { MessageRepository } from '@/application/message.repository.ts';
-import { Message } from '@/domain/message.ts';
-import { DateProvider } from '@/application/date.provider.ts';
 import { EmptyMessageError } from '@/domain/error/empty-message.error.ts';
 import { MessageTooLongError } from '@/domain/error/message-too-long.error.ts';
+import { Message } from '@/domain/message.ts';
+
+import { DateProvider } from '@/application/date.provider.ts';
+import { MessageRepository } from '@/application/message.repository.ts';
 import { Err, Ok, Result } from '@/application/result.ts';
 
 export type PostMessageCommand = {

@@ -1,9 +1,9 @@
-import { beforeEach, describe, test } from 'vitest';
-import {
-  createMessagingFixture,
-  MessagingFixture,
-} from '@/fixtures/messaging.fixture.ts';
 import { messageBuilder } from '@/fixtures/message.builder.ts';
+import {
+  MessagingFixture,
+  createMessagingFixture,
+} from '@/fixtures/messaging.fixture.ts';
+import { beforeEach, describe, test } from 'vitest';
 
 describe('Feature: Viewing a personal timeline', () => {
   let fixture: MessagingFixture;

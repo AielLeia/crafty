@@ -4,6 +4,10 @@ const config = {
   tabWidth: 2,
   semi: true,
   singleQuote: true,
+
+  plugins: ['@trivago/prettier-plugin-sort-imports'],
+  importOrder: ['<THIRD_PARTY_MODULES>', 'domain', 'application'],
+  importOrderSeparation: true,
 };
 
 module.exports = config;
