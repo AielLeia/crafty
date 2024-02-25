@@ -74,7 +74,7 @@ const createFixture = ({
   messageRepository: MessageRepository;
   followeeRepository: FollowRepository;
 }) => {
-  let dateProvider = new StubDateProvider();
+  const dateProvider = new StubDateProvider();
   let wall: { author: string; text: string; publicationTime: string }[];
   const viewWallUseCase = new ViewWallUseCase(
     messageRepository,

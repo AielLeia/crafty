@@ -1,6 +1,5 @@
-import { fileURLToPath, URL } from 'node:url';
-
 import { defineConfig } from 'vitest/config';
+import * as path from 'node:path';
 
 export default defineConfig({
   test: {
@@ -9,7 +8,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@': path.join(__dirname, 'src'),
     },
   },
 });

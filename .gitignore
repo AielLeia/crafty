@@ -133,6 +133,7 @@ build/Release
 
 # Dependency directories
 libs/node_modules/
+apps/node_modules/
 node_modules/
 jspm_packages/
 

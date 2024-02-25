@@ -6,7 +6,7 @@ export class FolloweePrismaRepository implements FollowRepository {
   constructor(private readonly prismaClient: PrismaClient) {}
 
   async getFolloweesOf(userName: string): Promise<UserFollowee> {
-    let user = await this.prismaClient.user.findFirstOrThrow({
+    const user = await this.prismaClient.user.findFirstOrThrow({
       where: { name: userName },
       include: { following: true },
     });
@@ -18,10 +18,10 @@ export class FolloweePrismaRepository implements FollowRepository {
 
   async save(user: UserFollowee): Promise<void> {
     await this.upsertUser(user.name);
-    for (let followee of user.followees.data) {
+    for (const followee of user.followees.data) {
       await this.upsertUser(followee);
     }
-    for (let followee of user.followees.data) {
+    for (const followee of user.followees.data) {
       await this.prismaClient.user.update({
         where: { name: user.name },
         data: {
