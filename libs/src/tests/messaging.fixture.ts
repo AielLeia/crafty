@@ -1,12 +1,14 @@
 import { StubDateProvider } from '@/tests/stub.dateprovider.ts';
 import { InMemoryMessageRepository } from '@/tests/message.inmemory.repository.ts';
-import PostMessageUseCase, {
+import {
+  PostMessageUseCase,
   PostMessageCommand,
 } from '@/application/usecase/post-message.usecase.ts';
 import { Message } from '@/domain/message.ts';
 import { expect } from 'vitest';
-import ViewTimelineUseCase from '@/application/usecase/view-timeline.usecase.ts';
-import EditMessageUseCase, {
+import { ViewTimelineUseCase } from '@/application/usecase/view-timeline.usecase.ts';
+import {
+  EditMessageUseCase,
   EditMessageCommand,
 } from '@/application/usecase/edit-message.usecase.ts';
 import { TimelineDefaultPresenter } from '@/app/timeline.default.presenter.ts';

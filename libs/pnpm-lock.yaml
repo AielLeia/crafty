@@ -4,67 +4,63 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-importers:
+dependencies:
+  '@prisma/client':
+    specifier: 5.10.0
+    version: 5.10.0(prisma@5.10.0)
+  commander:
+    specifier: ^12.0.0
+    version: 12.0.0
+  fastify:
+    specifier: ^4.26.1
+    version: 4.26.1
+  http-errors:
+    specifier: ^2.0.0
+    version: 2.0.0
+  module-alias:
+    specifier: ^2.2.3
+    version: 2.2.3
+  prisma:
+    specifier: ^5.10.0
+    version: 5.10.0
+  testcontainers:
+    specifier: ^10.7.1
+    version: 10.7.1
 
-  .: {}
-
-  libs:
-    dependencies:
-      '@prisma/client':
-        specifier: 5.10.0
-        version: 5.10.0(prisma@5.10.0)
-      commander:
-        specifier: ^12.0.0
-        version: 12.0.0
-      fastify:
-        specifier: ^4.26.1
-        version: 4.26.1
-      http-errors:
-        specifier: ^2.0.0
-        version: 2.0.0
-      module-alias:
-        specifier: ^2.2.3
-        version: 2.2.3
-      prisma:
-        specifier: ^5.10.0
-        version: 5.10.0
-      testcontainers:
-        specifier: ^10.7.1
-        version: 10.7.1
-    devDependencies:
-      '@testcontainers/postgresql':
-        specifier: ^10.7.1
-        version: 10.7.1
-      '@tsconfig/node-lts':
-        specifier: ^20.1.1
-        version: 20.1.1
-      '@types/http-errors':
-        specifier: ^2.0.4
-        version: 2.0.4
-      '@types/node':
-        specifier: ^20.11.19
-        version: 20.11.19
-      '@vitest/coverage-v8':
-        specifier: ^1.3.1
-        version: 1.3.1(vitest@1.3.1)
-      esbuild:
-        specifier: ^0.20.1
-        version: 0.20.1
-      esbuild-plugin-alias-path:
-        specifier: ^2.0.2
-        version: 2.0.2(esbuild@0.20.1)
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-      vite:
-        specifier: ^5.1.4
-        version: 5.1.4(@types/node@20.11.19)
-      vitest:
-        specifier: ^1.3.1
-        version: 1.3.1(@types/node@20.11.19)
+devDependencies:
+  '@testcontainers/postgresql':
+    specifier: ^10.7.1
+    version: 10.7.1
+  '@tsconfig/node-lts':
+    specifier: ^20.1.1
+    version: 20.1.1
+  '@types/http-errors':
+    specifier: ^2.0.4
+    version: 2.0.4
+  '@types/node':
+    specifier: ^20.11.19
+    version: 20.11.19
+  '@vitest/coverage-v8':
+    specifier: ^1.3.1
+    version: 1.3.1(vitest@1.3.1)
+  esbuild:
+    specifier: ^0.20.1
+    version: 0.20.1
+  esbuild-plugin-alias-path:
+    specifier: ^2.0.2
+    version: 2.0.2(esbuild@0.20.1)
+  prettier:
+    specifier: ^3.2.5
+    version: 3.2.5
+  typescript:
+    specifier: ^5.3.3
+    version: 5.3.3
+  vite:
+    specifier: ^5.1.4
+    version: 5.1.4(@types/node@20.11.19)
+  vitest:
+    specifier: ^1.3.1
+    version: 1.3.1(@types/node@20.11.19)
 
 packages:
 
@@ -1003,8 +999,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /bare-fs@2.2.0:
-    resolution: {integrity: sha512-+VhW202E9eTVGkX7p+TNXtZC4RTzj9JfJW7PtfIbZ7mIQ/QT9uOafQTx7lx2n9ERmWsXvLHF4hStAFn4gl2mQw==}
+  /bare-fs@2.1.5:
+    resolution: {integrity: sha512-5t0nlecX+N2uJqdxe9d18A98cp2u9BETelbjKpiVgQqzzmVNFYWEAjQHqS+2Khgto1vcwhik9cXucaj5ve2WWA==}
     requiresBuild: true
     dependencies:
       bare-events: 2.2.0
@@ -2194,7 +2190,7 @@ packages:
       pump: 3.0.0
       tar-stream: 3.1.7
     optionalDependencies:
-      bare-fs: 2.2.0
+      bare-fs: 2.1.5
       bare-path: 2.1.0
 
   /tar-stream@2.2.0:

@@ -2,11 +2,13 @@
 
 import 'module-alias/register';
 import { Command } from 'commander';
-import PostMessageUseCase, {
+import {
+  PostMessageUseCase,
   PostMessageCommand,
 } from '@/application/usecase/post-message.usecase.ts';
-import ViewTimelineUseCase from '@/application/usecase/view-timeline.usecase.ts';
-import EditMessageUseCase, {
+import { ViewTimelineUseCase } from '@/application/usecase/view-timeline.usecase.ts';
+import {
+  EditMessageUseCase,
   EditMessageCommand,
 } from '@/application/usecase/edit-message.usecase.ts';
 import { RealDateProvider } from '@/infrastructure/real-date.provider.ts';

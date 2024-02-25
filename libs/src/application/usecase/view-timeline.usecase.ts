@@ -2,7 +2,7 @@ import { MessageRepository } from '@/application/message.repository.ts';
 import { Timeline } from '@/domain/timeline.ts';
 import { TimelinePresenter } from '@/application/timeline.presenter.ts';
 
-export default class ViewTimelineUseCase {
+export class ViewTimelineUseCase {
   constructor(private readonly messageRepository: MessageRepository) {}
 
   async handle<T>(

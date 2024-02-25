@@ -11,7 +11,7 @@ export type PostMessageCommand = {
   author: string;
 };
 
-export default class PostMessageUseCase {
+export class PostMessageUseCase {
   constructor(
     private readonly messageRepository: MessageRepository,
     private readonly dateProvider: DateProvider

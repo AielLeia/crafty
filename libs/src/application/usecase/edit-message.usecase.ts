@@ -8,7 +8,7 @@ export type EditMessageCommand = {
   text: string;
 };
 
-export default class EditMessageUseCase {
+export class EditMessageUseCase {
   constructor(private readonly messageRepository: MessageRepository) {}
 
   async handle(
