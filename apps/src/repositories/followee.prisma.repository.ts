@@ -1,9 +1,12 @@
 import { FollowRepository } from '@aiel/crafty';
 import { UserFollowee } from '@aiel/crafty';
 import { PrismaClient } from '@prisma/client';
+import { Injectable } from '@nestjs/common';
+import {PrismaService} from "@/src/prisma.service";
 
+@Injectable()
 export class FolloweePrismaRepository implements FollowRepository {
-  constructor(private readonly prismaClient: PrismaClient) {}
+  constructor(private readonly prismaClient: PrismaService) {}
 
   async getFolloweesOf(userName: string): Promise<UserFollowee> {
     const user = await this.prismaClient.user.findFirstOrThrow({

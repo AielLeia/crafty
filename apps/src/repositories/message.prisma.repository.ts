@@ -1,9 +1,11 @@
 import { MessageRepository } from '@aiel/crafty';
 import { Message } from '@aiel/crafty';
-import { PrismaClient } from '@prisma/client';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from '@/src/prisma.service';
 
+@Injectable()
 export class MessagePrismaRepository implements MessageRepository {
-  constructor(private readonly prismaClient: PrismaClient) {}
+  constructor(private readonly prismaClient: PrismaService) {}
 
   async save(message: Message): Promise<void> {
     const messageData = message.data;
@@ -12,6 +14,8 @@ export class MessagePrismaRepository implements MessageRepository {
       update: { name: messageData.author },
       create: { name: messageData.author },
     });
+
+    console.log('saving a message');
 
     await this.prismaClient.message.upsert({
       where: { id: messageData.id },

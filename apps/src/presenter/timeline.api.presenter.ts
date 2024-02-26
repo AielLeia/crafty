@@ -1,7 +1,9 @@
-import { Timeline } from '@/domain/timeline';
+import { Timeline } from '@aiel/crafty';
 
-import { TimelinePresenter } from '@/application/timeline.presenter.ts';
+import { TimelinePresenter } from '@aiel/crafty';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class TimelineApiPresenter
   implements
     TimelinePresenter<

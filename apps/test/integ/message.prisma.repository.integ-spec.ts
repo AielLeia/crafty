@@ -15,12 +15,13 @@ import { promisify } from 'util';
 import { PrismaClient } from '@prisma/client';
 import { MessagePrismaRepository } from '@/src/repositories/message.prisma.repository';
 import { messageBuilder } from '@aiel/crafty';
+import {PrismaService} from "@/src/prisma.service";
 
 const asyncExec = promisify(exec);
 
 describe('MessagePrismaRepository', () => {
   let container: StartedPostgreSqlContainer;
-  let prismaClient: PrismaClient;
+  let prismaClient: PrismaService;
 
   beforeAll(async () => {
     container = await new PostgreSqlContainer()
@@ -32,7 +33,7 @@ describe('MessagePrismaRepository', () => {
 
     const databaseurl = container.getConnectionUri();
 
-    prismaClient = new PrismaClient({
+    prismaClient = new PrismaService({
       datasources: {
         db: {
           url: databaseurl,

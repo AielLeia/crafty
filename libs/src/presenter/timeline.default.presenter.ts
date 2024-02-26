@@ -1,7 +1,6 @@
-import { Timeline } from '@/domain/timeline.ts';
+import { Timeline } from '@/domain';
 
-import { DateProvider } from '@/application/date.provider.ts';
-import { TimelinePresenter } from '@/application/timeline.presenter.ts';
+import { DateProvider, TimelinePresenter } from '@/application';
 
 const ONE_MINUTE_IN_MS = 60000;
 
